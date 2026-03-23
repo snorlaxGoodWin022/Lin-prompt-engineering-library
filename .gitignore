@@ -48,3 +48,8 @@ pnpm-lock.yaml
 # Local development files
 .local-*
 *.local.*
+local/
+.claude/
+
+# Local work tracking files
+后续工作.md
