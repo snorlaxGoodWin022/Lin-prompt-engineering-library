@@ -39,6 +39,43 @@ node tools/template-validator.js prompts/performance/
 ### Prompt 格式化
 - **prompt-formatter.js** - 格式化 Prompt 模板，填充占位符
 
+#### 使用流程
+
+```bash
+# 第一步：从模板生成参数文件
+node tools/prompt-formatter.js prompts/components/react-component.md
+# → 生成 react-component.params.json
+
+# 第二步：编辑参数文件填写替换值，然后填充模板
+node tools/prompt-formatter.js prompts/components/react-component.md -p react-component.params.json
+
+# 指定输出文件
+node tools/prompt-formatter.js prompts/components/react-component.md -p react-component.params.json -o output.md
+```
+
+#### 参数文件格式
+
+JSON 格式，key 为占位符文本（不含大括号），value 为替换值：
+
+```json
+{
+  "组件名称": "UserAvatar",
+  "详细描述组件要做什么": "一个用户头像组件，支持不同尺寸和在线状态",
+  "prop1": "userId",
+  "类型": "string",
+  "说明": "用户唯一标识",
+  "prop2": "size"
+}
+```
+
+#### 选项
+
+| 选项 | 说明 |
+|------|------|
+| `-p, --params <file>` | 参数 JSON 文件 |
+| `-o, --output <file>` | 输出文件路径（默认输出到控制台） |
+| `-i, --init <file>` | 指定参数模板输出路径 |
+
 ### 一键复制
 - **copy-template.js** - 将模板复制到剪贴板，方便使用
 
