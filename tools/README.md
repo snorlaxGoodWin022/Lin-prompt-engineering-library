@@ -7,6 +7,35 @@
 ### 模板验证
 - **template-validator.js** - 验证模板格式是否符合规范
 
+#### 使用方法
+
+```bash
+# 验证所有模板（默认扫描 prompts/ 目录）
+node tools/template-validator.js
+
+# 验证指定文件
+node tools/template-validator.js prompts/components/react-component.md
+
+# 验证指定目录
+node tools/template-validator.js prompts/performance/
+```
+
+#### 验证规则
+
+| 规则 | 级别 | 说明 |
+|------|------|------|
+| H1_TITLE | error | 必须包含一级标题 |
+| PLACEHOLDERS | error | 必须包含占位符 `{...}` |
+| PLACEHOLDER_FORMAT | warn | 大括号必须成对 |
+| TEMPLATE_DESC | error | 必须有模板说明或使用示例 |
+| OUTPUT_REQ | error | 必须有输出要求或输出格式 |
+| SECTIONS | warn | 至少2个二级标题 |
+| NO_TODO | warn | 不应有 TODO/FIXME |
+| FILE_NAMING | warn | 文件名 kebab-case |
+| LENGTH | warn | 模板长度 10-500 行 |
+
+级别说明：`error` 导致验证失败，`warn` 仅警告。
+
 ### Prompt 格式化
 - **prompt-formatter.js** - 格式化 Prompt 模板，填充占位符
 
